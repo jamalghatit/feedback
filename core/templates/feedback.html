@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Empresa<i class="fas fa-globe-americas"></i></h1>
+        <p class="lead">Feedback</p>
+        <hr class="my-4">
+        <p>Por gentileza, deixe a opnião do senhor(a)</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'sobre' %}" role="button">Sobre o projeto</a>
+    </div>
+
+  {% bootstrap_messages %}
+      
+  <form action="{% url 'feedback' %}" method='POST' class='form' autocomplete='off'>
+    {% csrf_token %}
+    {% bootstrap_form form%} <!-- esse é o contexto form passado na view.py-->
+    {% buttons %}
+      <button type='submit' class='btn btn-primary'>Enviar pesquisa</button>
+    {% endbuttons %}
+  </form>
+  </div>
+
+{% endblock content %}
